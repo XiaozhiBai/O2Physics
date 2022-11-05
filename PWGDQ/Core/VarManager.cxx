@@ -114,7 +114,6 @@ void VarManager::FillTrackDerived(float* values)
 float VarManager::GetTPCPostCalibMap(float pin, float eta, int particle_type, TString period)
 {
   if (period.Contains("LHC22m_pass1_subset")) {
-    //LOGF(info, "this is LHC22m (testing)");
     float El_mean_curve_pin = (pin < 0.3) ? 1.74338 : ((pin > 0.3) & (pin < 5)) ? 1 / (0.694318 + -5.66879 * pin) + 2.73696 + 0.000483342 * pin : (pin > 5) ? 2.70321 : 0.0;
     float Pi_mean_curve_pin = (pin < 0.3) ? 1.95561 : ((pin > 0.3) & (pin < 3)) ? -0.0606029 / pin + 2.18796 + -0.101135 * pin : (pin > 3) ? 1.86435 : 0.0;
     float Pr_mean_curve_pin = (pin < 0.4) ? 1.94664 : ((pin > 0.4) & (pin < 5)) ? 1 / (-0.495484 + -1.03622 * pin) + 3.0513 + -0.0143036 * pin : (pin > 5) ? 2.80362 : 0.0;
@@ -139,11 +138,9 @@ float VarManager::GetTPCPostCalibMap(float pin, float eta, int particle_type, TS
     float pin_map = (particle_type == 0) ? El_mean_curve_pin : (particle_type == 1) ? Pi_mean_curve_pin : (particle_type == 2) ? Pr_mean_curve_pin : 0.0;
     float eta_map = (particle_type == 0) ? El_mean_curve_eta : (particle_type == 1) ? Pi_mean_curve_eta : (particle_type == 2) ? Pr_mean_curve_eta : 0.0;
     float map = pin_map + eta_map;
-    //LOGF(info, "this is LHC22f (test for me),map is %f",map);
     return map;
   } else {
     float map = 0.0;
-    //  LOGF(info, "Can not found the post-calibration for this run");
     return map;
   }
 }
