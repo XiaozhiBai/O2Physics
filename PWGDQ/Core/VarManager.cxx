@@ -111,7 +111,6 @@ void VarManager::FillTrackDerived(float* values)
   }
 }
 //_________________________________________________________________________________________________________________________________________________________________________________
-// This the hard code for the temporary testing of the fisrt version of post-calibration maps,we need a smart way to get the post-calib from CCDB,
 float VarManager::GetTPCPostCalibMap(float pin, float eta, int particle_type, TString period)
 {
   if (period.Contains("LHC22m_pass1_subset")) {
