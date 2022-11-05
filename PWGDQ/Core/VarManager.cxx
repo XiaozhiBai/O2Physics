@@ -121,7 +121,6 @@ float VarManager::GetTPCPostCalibMap(float pin, float eta, int particle_type, TS
     float El_mean_curve_eta = (std::abs(eta) < 0.9) ? -1.17942e-01 + -1.51932e-01 * std::cos(4.32572e+00 * eta) : 0.0;
     float Pi_mean_curve_eta = (std::abs(eta) < 0.9) ? -5.21188e-02 + -3.35413e-01 * std::cos(4.16710e+00 * eta) : 0.0;
     float Pr_mean_curve_eta = (std::abs(eta) < 0.9) ? -1.33413e-02 + -3.83269e-01 * std::cos(3.95128e+00 * eta) : 0.0;
-
     float pin_map = (particle_type == 0) ? El_mean_curve_pin : (particle_type == 1) ? Pi_mean_curve_pin : (particle_type == 2) ? Pr_mean_curve_pin : 0.0;
     float eta_map = (particle_type == 0) ? El_mean_curve_eta : (particle_type == 1) ? Pi_mean_curve_eta : (particle_type == 2) ? Pr_mean_curve_eta : 0.0;
     float map = pin_map + eta_map;
