@@ -125,8 +125,7 @@ float VarManager::GetTPCPostCalibMap(float pin, float eta, int particle_type, TS
     float eta_map = (particle_type == 0) ? El_mean_curve_eta : ((particle_type == 1) ? Pi_mean_curve_eta : Pr_mean_curve_eta);
     float map = pin_map + eta_map;
     return map;
-  }
-  else if (period.Contains("LHC22f_pass1")) {
+  } else if (period.Contains("LHC22f_pass1")) {
     float El_mean_curve_pin = (pin < 0.3) ? 0.24335236 : ((pin < 3.5) ? 1 / (0.0113621 - 2.44516 * pin) + 1.63907 - 0.0367754 * pin : 1.3933518);
     float Pi_mean_curve_pin = (pin < 0.3) ? -0.30059726 : ((pin < 3.5) ? 1 / (-4.51007e+06 - 5.52635e+06 * pin) - 0.349193 + 0.171139 * pin - 0.0305089 * pin * pin : -0.12394057);
     float Pr_mean_curve_pin = (pin < 0.3) ? 0.1 : ((pin < 3.5) ? 1 / (0.482973 - 3.55557 * pin) + 1.38574 - 0.627066 * pin + 0.103612 * pin * pin : 0.37665460);
@@ -139,32 +138,29 @@ float VarManager::GetTPCPostCalibMap(float pin, float eta, int particle_type, TS
 
     float map = pin_map + eta_map;
     return map;
-  }
-  else {
+  } else {
     float map = 0.0;
     return map;
   }
 }
 //__________________________________________________________________
-TString VarManager::GetRunPeriod(float runNumber){
-    int runlist_22f[2] = { 520259, 520473 };
-    int runlist_22m[2] = { 523393, 523397 };
+TString VarManager::GetRunPeriod(float runNumber)
+{
+  int runlist_22f[2] = {520259, 520473};
+  int runlist_22m[2] = {523393, 523397};
 
-    if (runNumber >= runlist_22f[0] && runNumber <= runlist_22f[1]){
-      TString runperiod = "LHC22f_pass1";
-      return runperiod;
-    }
-    else if (runNumber >= runlist_22m[0] && runNumber <= runlist_22m[1]){
-      TString runperiod = "LHC22m_pass1_subset";
-      return runperiod;
-    }
-    else{
-      TString runperiod = "none";
-      //LOGF(info, "can't find run period for run %.0d", runNumber);
-      return runperiod;
-    }
-
-  };
+  if (runNumber >= runlist_22f[0] && runNumber <= runlist_22f[1]) {
+    TString runperiod = "LHC22f_pass1";
+    return runperiod;
+  } else if (runNumber >= runlist_22m[0] && runNumber <= runlist_22m[1]) {
+    TString runperiod = "LHC22m_pass1_subset";
+    return runperiod;
+  } else {
+    TString runperiod = "none";
+    //LOGF(info, "can't find run period for run %.0d", runNumber);
+    return runperiod;
+  }
+};
 //__________________________________________________________________
 void VarManager::SetDefaultVarNames()
 {
